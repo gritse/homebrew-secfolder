@@ -2,7 +2,7 @@ cask 'secfolder' do
   version "0.1.2"
   sha256 :no_check
 
-  url "https://secfolder.blob.core.windows.net/test/SecFolder-#{version}.zip"
+  url "https://secfolder.blob.core.windows.net/brew/SecFolder-#{version}.zip"
   name 'SecFolder'
   homepage 'https://secfolder.net'
 
