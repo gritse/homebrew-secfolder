@@ -12,18 +12,23 @@ cask 'secfolder' do
   app 'SecFolder.app'
 
   preflight do
-    system_command 'mkdir',
-                   args: ['-p', '/Library/Preferences/SecFolder'],
-                   sudo: true
-    system_command 'mkdir',
-                   args: ['-p', File.expand_path('~/SecretDocuments')],
-                   sudo: false
-    system_command 'cp',
-                   args: [
-                     staged_path.join('readme.txt'),
-                     File.expand_path('~/SecretDocuments/readme.txt')
-                   ],
-                   sudo: false
+    begin
+      system_command 'mkdir',
+                    args: ['-p', '/Library/Preferences/SecFolder'],
+                    sudo: true
+      system_command 'mkdir',
+                    args: ['-p', File.expand_path('~/SecretDocuments')],
+                    sudo: false
+      system_command 'cp',
+                    args: [
+                      staged_path.join('readme.txt'),
+                      File.expand_path('~/SecretDocuments/readme.txt')
+                    ],
+                    sudo: false
+    rescue => e
+      opoo "An error occurred while copying readme.txt, but it's safe to ignore"
+    end
+
     system_command "xattr",
                    args: [
                      "-d", "com.apple.quarantine", staged_path.join('SecFolder.app')
@@ -57,7 +62,7 @@ cask 'secfolder' do
   	license "https://secfolder.net/terms.html"
   end
   
-  uninstall delete:		['/Applications/SecFolder.app'],
+  uninstall delete:		[],
             quit:    	['com.warsaw.SecFolder', 'com.warsaw.SecFolder.Helper'],
             launchctl: 	'com.warsaw.SecFolder.Helper'
             
