@@ -34,11 +34,11 @@ cask 'secfolder' do
                      "-d", "com.apple.quarantine", staged_path.join('SecFolder.app')
                    ],
                    sudo: true
-      system_command "codesign",
-                   args: [
-                     "--deep", "-f", "-s", "-", "--verbose=4", staged_path.join('SecFolder.app')
-                   ],
-                   sudo: true
+    system_command "codesign",
+                  args: [
+                    "--deep", "-f", "-s", "-", "--verbose=4", staged_path.join('SecFolder.app')
+                  ],
+                  sudo: true
   end
 
   postflight do
