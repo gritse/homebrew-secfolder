@@ -1,5 +1,5 @@
 cask 'secfolder' do
-  version "0.1.4"
+  version "0.1.6"
   sha256 :no_check
 
   url "https://secfolder.blob.core.windows.net/brew/SecFolder-#{version}.zip"
@@ -7,7 +7,7 @@ cask 'secfolder' do
   homepage 'https://secfolder.net'
 
   depends_on cask: "santa"
-  depends_on macos: ">= :sonoma"
+  depends_on macos: ">= :ventura"
   
   app 'SecFolder.app'
 
