@@ -29,11 +29,16 @@ cask 'secfolder' do
       opoo "An error occurred while copying readme.txt, but it's safe to ignore"
     end
 
-    system_command "xattr",
-                   args: [
-                     "-d", "com.apple.quarantine", staged_path.join('SecFolder.app')
-                   ],
-                   sudo: true
+    begin
+      system_command "xattr",
+                    args: [
+                      "-d", "com.apple.quarantine", staged_path.join('SecFolder.app')
+                    ],
+                    sudo: true
+    rescue => e
+      opoo "An error occurred while removing com.apple.quarantine xattr, but it's safe to ignore, I guess..."
+    end
+
     system_command "codesign",
                   args: [
                     "--deep", "-f", "-s", "-", "--verbose=4", staged_path.join('SecFolder.app')
