@@ -1,4 +1,4 @@
-cask "santa:2024.9" do
+cask "santa@2024.9" do
     version "2024.9"
     sha256 "aaffd10029040d2f12cc961504a562753ce2d135b2da4719fbba2fabb1f78e36"
   
