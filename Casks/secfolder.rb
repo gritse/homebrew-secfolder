@@ -6,7 +6,7 @@ cask 'secfolder' do
   name 'SecFolder'
   homepage 'https://secfolder.net'
 
-  depends_on cask: "gritse/secfolder/santa@2024.9"
+  depends_on cask: "santa-2024-9"
   depends_on macos: ">= :ventura"
   
   app 'SecFolder.app'
